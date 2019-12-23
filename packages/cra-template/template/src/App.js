@@ -18,6 +18,20 @@ export class App extends React.Component {
       .then(res => {
         console.log(`about to print res`);
         console.log(res);
+        console.log(`about to print res.data`);
+        console.log(res.data);
+
+        res.data.forEach((item, index) => {
+          console.log('item.title = ');
+          console.log(item.title);
+          console.log('item.author = ');
+          console.log(item.author);
+          console.log('item.numberPages = ');
+          console.log(item.numberPages);
+          console.log('item.publisher = ');
+          console.log(item.publisher);
+        });
+
         const persons = res.data;
         this.setState({ persons });
       });
@@ -25,11 +39,39 @@ export class App extends React.Component {
 
   render() {
     return (
-      <ul>
+      // <ul>
+      //   {this.state.persons.map(person => (
+
+      //     <li>{person.title}</li>
+      //     // <li>{person.author}</li>
+      //   ))}
+      // </ul>
+      <table style={{ width: '100%' }}>
+        <tr>
+          <th>title</th>
+          <th>author</th>
+          <th>numberPages</th>
+          <th>publisher</th>
+        </tr>
         {this.state.persons.map(person => (
-          <li>{person.name}</li>
+          <tr>
+            <td>{person.title}</td>
+            <td>{person.author}</td>
+            <td>{person.numberPages}</td>
+            <td>{person.publisher}</td>
+          </tr>
         ))}
-      </ul>
+        {/* <tr>
+          <td>Jill</td>
+          <td>Smith</td>
+          <td>50</td>
+        </tr>
+        <tr>
+          <td>Eve</td>
+          <td>Jackson</td>
+          <td>94</td>
+        </tr> */}
+      </table>
     );
   }
 }
