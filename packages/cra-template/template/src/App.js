@@ -9,10 +9,11 @@ var url = 'https://limitless-springs-00633.herokuapp.com/books';
 
 export class App extends React.Component {
   state = {
-    title: "",
-    author: "",
-    numberPages: 0,
-    publisher: "",
+    title: null,
+    author: null,
+    numberPages: null,
+    publisher: null,
+    isAddValid: false
   };
 
   componentDidMount() {
@@ -54,6 +55,7 @@ export class App extends React.Component {
         console.log(res.data)
     })
     .catch(error => {
+        console.log("we are in error state")
         console.log(error)
     });
 
@@ -69,7 +71,12 @@ export class App extends React.Component {
           <input type="text" name="numberPages" onChange={this.handleChangeNumberPages} />
           <input type="text" name="publisher" onChange={this.handleChangePublisher} />
         </label>
-        <button type="submit">Add</button>
+        <button type="submit" style={{
+          
+          pointerEvents: (this.state.isAddValid ? "initial" : "none"),
+          color: (this.state.isAddValid ? "black" : "gray")
+          
+          }}>Add</button>
       </form>
 
 
