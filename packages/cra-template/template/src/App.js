@@ -25,8 +25,12 @@ export class App extends React.Component {
   render() {
     return (
       <div>
-        <EditBook />
-        <table style={{ width: '100%' }}>
+        <EditBook
+            author={"testauthor"}
+        />
+        <table 
+        // style={{ width: '50%' }}
+        >
           <tr>
             <th>title</th>
             <th>author</th>
