@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import logo from './logo.svg';
 import './App.css';
+import EditBook from './EditBook';
 
 var url = 'https://limitless-springs-00633.herokuapp.com/books';
 
@@ -9,7 +10,7 @@ var url = 'https://limitless-springs-00633.herokuapp.com/books';
 
 export class App extends React.Component {
   state = {
-    persons: []
+    persons: [],
   };
 
   componentDidMount() {
@@ -23,22 +24,25 @@ export class App extends React.Component {
 
   render() {
     return (
-      <table style={{ width: '100%' }}>
-        <tr>
-          <th>title</th>
-          <th>author</th>
-          <th>numberPages</th>
-          <th>publisher</th>
-        </tr>
-        {this.state.persons.map(person => (
+      <div>
+        <EditBook />
+        <table style={{ width: '100%' }}>
           <tr>
-            <td>{person.title}</td>
-            <td>{person.author}</td>
-            <td>{person.numberPages}</td>
-            <td>{person.publisher}</td>
+            <th>title</th>
+            <th>author</th>
+            <th>numberPages</th>
+            <th>publisher</th>
           </tr>
-        ))}
-      </table>
+          {this.state.persons.map(person => (
+            <tr>
+              <td>{person.title}</td>
+              <td>{person.author}</td>
+              <td>{person.numberPages}</td>
+              <td>{person.publisher}</td>
+            </tr>
+          ))}
+        </table>
+      </div>
     );
   }
 }
