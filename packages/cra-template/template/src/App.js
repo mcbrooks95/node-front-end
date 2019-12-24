@@ -11,6 +11,7 @@ var url = 'https://limitless-springs-00633.herokuapp.com/books';
 export class App extends React.Component {
   state = {
     persons: [],
+    personBeingEdited: null
   };
 
   componentDidMount() {
@@ -22,19 +23,34 @@ export class App extends React.Component {
       });
   }
 
+  handleEdit = (person) => {
+    console.log('in handle edit and person is ' + person)
+    this.setState({ personBeingEdited: person });
+  }
+
   render() {
     return (
       <div>
+        { this.state.personBeingEdited ?
         <EditBook
-            author={"testauthor"}
-            title={"testtitle"}
-            numberPages={3}
-            publisher={"testPublisher"}
+            id={this.state.personBeingEdited._id}
+            author={this.state.personBeingEdited.author}
+            title={this.state.personBeingEdited.title}
+            numberPages={this.state.personBeingEdited.numberPages}
+            publisher={this.state.personBeingEdited.publisher}
+
+            // author={"testauthor"}
+            // title={"testtitle"}
+            // numberPages={3}
+            // publisher={"testPublisher"}
+
             // title: this.props.title ?? null,
             // author: this.props.author ?? null,
             // numberPages: this.props.numberPages ?? null,
             // publisher: this.props.publisher ?? null,
         />
+        : null
+        }
         <table 
         // style={{ width: '50%' }}
         >
@@ -43,6 +59,7 @@ export class App extends React.Component {
             <th>author</th>
             <th>numberPages</th>
             <th>publisher</th>
+            <th>Edit Button</th>
           </tr>
           {this.state.persons.map(person => (
             <tr>
@@ -50,6 +67,7 @@ export class App extends React.Component {
               <td>{person.author}</td>
               <td>{person.numberPages}</td>
               <td>{person.publisher}</td>
+              <td><button type='button' onClick={() => this.handleEdit(person)}>asdf</button></td>
             </tr>
           ))}
         </table>
