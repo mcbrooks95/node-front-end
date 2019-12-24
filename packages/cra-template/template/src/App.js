@@ -9,7 +9,10 @@ var url = 'https://limitless-springs-00633.herokuapp.com/books';
 
 export class App extends React.Component {
   state = {
-    persons: [],
+    title: "",
+    author: "",
+    numberPages: 0,
+    publisher: "",
   };
 
   componentDidMount() {
@@ -21,18 +24,28 @@ export class App extends React.Component {
       });
   }
 
-  handleChange = event => {
-    this.setState({ name: event.target.value });
+  handleChangeTitle = event => {
+    this.setState({ title: event.target.value });
   }
+  handleChangeAuthor = event => {
+    this.setState({ author: event.target.value });
+  }
+  handleChangeNumberPages = event => {
+    this.setState({ numberPages: event.target.value });
+  }
+  handleChangePublisher = event => {
+    this.setState({ publisher: event.target.value });
+  }
+
 
   handleSubmit = event => {
     event.preventDefault();
 
     const user = {
-      title: "cors title",
-      author: "this.state.name",
-      numberPages: 3432,
-      publisher: "test publisher"
+      title: this.state.title,
+      author: this.state.author,
+      numberPages: this.state.numberPages,
+      publisher: this.state.publisher
     }
 
     axios.put("https://limitless-springs-00633.herokuapp.com/book/5dec1fa2655c3e3accfe4803", user)
@@ -40,6 +53,9 @@ export class App extends React.Component {
         console.log(res)
         console.log(res.data)
     })
+    .catch(error => {
+        console.log(error)
+    });
 
   }
 
@@ -48,7 +64,10 @@ export class App extends React.Component {
       <form onSubmit={this.handleSubmit}>
         <label>
           Person Name:
-          <input type="text" name="name" onChange={this.handleChange} />
+          <input type="text" name="title" onChange={this.handleChangeTitle} />
+          <input type="text" name="author" onChange={this.handleChangeAuthor} />
+          <input type="text" name="numberPages" onChange={this.handleChangeNumberPages} />
+          <input type="text" name="publisher" onChange={this.handleChangePublisher} />
         </label>
         <button type="submit">Add</button>
       </form>
