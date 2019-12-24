@@ -9,12 +9,10 @@ var url = 'https://limitless-springs-00633.herokuapp.com/books';
 
 export class EditBook extends React.Component {
   state = {
-    title: null,
-    // author: null,
-    // author: this.props.author,
-    author: "asdf",
-    numberPages: null,
-    publisher: null,
+    title: this.props.title ?? null,
+    author: this.props.author ?? null,
+    numberPages: this.props.numberPages ?? null,
+    publisher: this.props.publisher ?? null,
     isAddValid: false
   };
 

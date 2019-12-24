@@ -27,6 +27,13 @@ export class App extends React.Component {
       <div>
         <EditBook
             author={"testauthor"}
+            title={"testtitle"}
+            numberPages={3}
+            publisher={"testPublisher"}
+            // title: this.props.title ?? null,
+            // author: this.props.author ?? null,
+            // numberPages: this.props.numberPages ?? null,
+            // publisher: this.props.publisher ?? null,
         />
         <table 
         // style={{ width: '50%' }}
