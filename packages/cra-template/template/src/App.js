@@ -9,11 +9,7 @@ var url = 'https://limitless-springs-00633.herokuapp.com/books';
 
 export class App extends React.Component {
   state = {
-    title: null,
-    author: null,
-    numberPages: null,
-    publisher: null,
-    isAddValid: false
+    persons: []
   };
 
   componentDidMount() {
@@ -25,83 +21,24 @@ export class App extends React.Component {
       });
   }
 
-  handleChangeTitle = event => {
-    this.setState({ title: event.target.value });
-  }
-  handleChangeAuthor = event => {
-    this.setState({ author: event.target.value });
-  }
-  handleChangeNumberPages = event => {
-    this.setState({ numberPages: event.target.value });
-  }
-  handleChangePublisher = event => {
-    this.setState({ publisher: event.target.value });
-  }
-
-
-  handleSubmit = event => {
-    event.preventDefault();
-
-    const user = {
-      title: this.state.title,
-      author: this.state.author,
-      numberPages: this.state.numberPages,
-      publisher: this.state.publisher
-    }
-
-    axios.put("https://limitless-springs-00633.herokuapp.com/book/5dec1fa2655c3e3accfe4803", user)
-    .then((res) => {
-        console.log(res)
-        console.log(res.data)
-    })
-    .catch(error => {
-        console.log("we are in error state")
-        console.log(error)
-    });
-
-  }
-
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          Person Name:
-          <input type="text" name="title" onChange={this.handleChangeTitle} />
-          <input type="text" name="author" onChange={this.handleChangeAuthor} />
-          <input type="text" name="numberPages" onChange={this.handleChangeNumberPages} />
-          <input type="text" name="publisher" onChange={this.handleChangePublisher} />
-        </label>
-        <button type="submit" style={{
-          
-          pointerEvents: (this.state.isAddValid ? "initial" : "none"),
-          color: (this.state.isAddValid ? "black" : "gray")
-          
-          }}>Add</button>
-      </form>
-
-
-
-
-      // <table style={{ width: '100%' }}>
-      //   <tr>
-      //     <th>title</th>
-      //     <th>author</th>
-      //     <th>numberPages</th>
-      //     <th>publisher</th>
-      //   </tr>
-      //   {this.state.persons.map(person => (
-      //     <tr>
-      //       <td>{person.title}</td>
-      //       <td>{person.author}</td>
-      //       <td>{person.numberPages}</td>
-      //       <td>{person.publisher}</td>
-      //     </tr>
-      //   ))}
-      // </table>
-
-
-
-
+      <table style={{ width: '100%' }}>
+        <tr>
+          <th>title</th>
+          <th>author</th>
+          <th>numberPages</th>
+          <th>publisher</th>
+        </tr>
+        {this.state.persons.map(person => (
+          <tr>
+            <td>{person.title}</td>
+            <td>{person.author}</td>
+            <td>{person.numberPages}</td>
+            <td>{person.publisher}</td>
+          </tr>
+        ))}
+      </table>
     );
   }
 }
