@@ -1,10 +1,10 @@
 import React from 'react';
 import axios from 'axios';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 import EditBook from './EditBook';
 
-var url = 'https://limitless-springs-00633.herokuapp.com/books';
+// var url = 'https://limitless-springs-00633.herokuapp.com/books';
 
 // source code = https://www.youtube.com/watch?v=oQnojIyTXb8
 
@@ -33,6 +33,19 @@ export class App extends React.Component {
     this.setState({ personBeingEdited: null });
   };
 
+  refreshData = () => {
+    console.log('refreshData called');
+    axios
+      .get(`https://limitless-springs-00633.herokuapp.com/books`)
+      .then(res => {
+        const persons = res.data;
+        this.setState({ persons });
+      })
+      .then(() => {
+        this.setState({ personBeingEdited: null });
+      });
+  };
+
   render() {
     return (
       <div>
@@ -44,7 +57,7 @@ export class App extends React.Component {
             numberPages={this.state.personBeingEdited.numberPages}
             publisher={this.state.personBeingEdited.publisher}
             cancelButtonCallBack={() => this.handleCancel()}
-
+            refreshData={() => this.refreshData()}
             // author={"testauthor"}
             // title={"testtitle"}
             // numberPages={3}
@@ -59,30 +72,33 @@ export class App extends React.Component {
         <table
         // style={{ width: '50%' }}
         >
-          <tr>
-            <th>title</th>
-            <th>author</th>
-            <th>numberPages</th>
-            <th>publisher</th>
-            <th>Edit Button</th>
-          </tr>
-          {this.state.persons.map(person => (
-            <tr>
-              <td>{person.title}</td>
-              <td>{person.author}</td>
-              <td>{person.numberPages}</td>
-              <td>{person.publisher}</td>
-              <td
-                style={{
-                  display: this.state.personBeingEdited ? 'none' : 'initial',
-                }}
-              >
-                <button type="button" onClick={() => this.handleEdit(person)}>
-                  asdf
-                </button>
-              </td>
+          <tbody>
+            <tr key="thing1">
+              <th>title</th>
+              <th>author</th>
+              <th>numberPages</th>
+              <th>publisher</th>
+              <th>Edit Button</th>
             </tr>
-          ))}
+            {this.state.persons.map(person => (
+              <tr key={person._id}>
+                <td key={'title'}>{person.title}</td>
+                <td key={'author'}>{person.author}</td>
+                <td key={'numberPages'}>{person.numberPages}</td>
+                <td key={'publisher'}>{person.publisher}</td>
+                <td
+                  key={'button'}
+                  style={{
+                    display: this.state.personBeingEdited ? 'none' : 'initial',
+                  }}
+                >
+                  <button type="button" onClick={() => this.handleEdit(person)}>
+                    asdf
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
         </table>
       </div>
     );

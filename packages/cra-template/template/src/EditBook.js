@@ -1,9 +1,9 @@
 import React from 'react';
 import axios from 'axios';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 
-var url = 'https://limitless-springs-00633.herokuapp.com/books';
+// var url = 'https://limitless-springs-00633.herokuapp.com/books';
 
 // source code = https://www.youtube.com/watch?v=oQnojIyTXb8
 
@@ -52,7 +52,7 @@ export class EditBook extends React.Component {
     return (
       value &&
       (value > 0 || value.length > 0) &&
-      (type == 'string'
+      (type === 'string'
         ? typeof value === 'string'
         : typeof parseInt(value) === 'number') &&
       value.length > 0
@@ -145,25 +145,19 @@ export class EditBook extends React.Component {
         'https://limitless-springs-00633.herokuapp.com/book/5dec1fa2655c3e3accfe4803',
         user
       )
-      .then(res => {
-        axios
-          .get(`https://limitless-springs-00633.herokuapp.com/books`)
-          .then(res => {
-            const persons = res.data;
-            this.setState({ persons });
-          });
-        window.location = window.location;
-      })
       .catch(error => {
         console.log('we are in error state');
         console.log(error);
+      })
+      .then(() => {
+        this.props.refreshData();
       });
   };
 
   render() {
     // console.log("about to print this.props.author")
     // console.log(this.props.author)
-    this.getStates();
+    // this.getStates();
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
@@ -199,7 +193,7 @@ export class EditBook extends React.Component {
           </label>
           <button
             type="submit"
-            data-isAddValid={this.state.isAddValid}
+            data-is-add-valid={this.state.isAddValid}
             style={{
               pointerEvents: this.state.isAddValid ? 'initial' : 'none',
               color: this.state.isAddValid ? 'black' : 'gray',
