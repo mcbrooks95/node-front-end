@@ -1,5 +1,5 @@
 import React from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 import './App.css';
 
 export class Post extends React.Component {
@@ -20,7 +20,7 @@ export class Post extends React.Component {
         <div class="col-md-3">{this.state.upvoteAmount}</div>
           <div class="col-md-3">
             <div>
-              <a href="#" style={{fontSize: "22px"}}>{this.state.title}</a>
+              <a href="https://www.google.com/" style={{fontSize: "22px"}}>{this.state.title}</a>
             </div>{' '}
             by {this.state.contactPosterUserName} on {this.state.datePosted}
           </div>
