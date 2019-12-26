@@ -16,11 +16,14 @@ export class Post extends React.Component {
 
   render() {
     return (
-      <div>
-        <h4>
-          <a>{this.state.title}</a>
-        </h4>{' '}
-        by {this.state.contactPosterUserName} on {this.state.datePosted}
+      <div class="row">
+        <div class="col-md-3">{this.state.upvoteAmount}</div>
+          <div class="col-md-3">
+            <div>
+              <a href="#" style={{fontSize: "22px"}}>{this.state.title}</a>
+            </div>{' '}
+            by {this.state.contactPosterUserName} on {this.state.datePosted}
+          </div>
       </div>
     );
   }
