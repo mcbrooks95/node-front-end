@@ -49,14 +49,23 @@ export class EditBook extends React.Component {
   };
 
   isEventTargetValid = (value, type) => {
-    return (
+    console.log('in isEventTargetValid');
+    console.log(value);
+    console.log(value > 0);
+    console.log(value.length > 0);
+    console.log(type);
+    console.log(typeof parseInt(value));
+    console.log(typeof parseInt(value) === 'number');
+    console.log(value.length > 0);
+    var ReturnValue =
       value &&
-      (value > 0 || value.length > 0) &&
+      // (value > 0 || value.length > 0) &&
       (type === 'string'
-        ? typeof value === 'string'
-        : typeof parseInt(value) === 'number') &&
-      value.length > 0
-    );
+        ? typeof value === 'string' && value.length > 0
+        : typeof parseInt(value) === 'number' && parseInt(value) > 0);
+
+    console.log('returnValue = ' + ReturnValue);
+    return ReturnValue;
   };
 
   handleChangeTitle = event => {
@@ -90,6 +99,7 @@ export class EditBook extends React.Component {
     }
   };
   handleChangeNumberPages = event => {
+    console.log('in handleChangeNumberPages');
     this.setState({
       numberPages:
         parseInt(event.target.value) > 0 ? parseInt(event.target.value) : null,
