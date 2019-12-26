@@ -155,17 +155,10 @@ export class EditBook extends React.Component {
   };
 
   render() {
-    // console.log("about to print this.props.author")
-    // console.log(this.props.author)
-    // this.getStates();
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
           <label>
-            {/* <input type="text" name="title" onChange={this.handleChangeTitle} />
-                    <input type="text" name="author" onChange={this.handleChangeAuthor} />
-                    <input type="text" name="numberPages" onChange={this.handleChangeNumberPages} />
-                    <input type="text" name="publisher" onChange={this.handleChangePublisher} /> */}
             <input
               type="text"
               name="title"
@@ -202,14 +195,7 @@ export class EditBook extends React.Component {
             Add
           </button>
         </form>
-        <button
-          type="cancel"
-          // style={{
-          //     pointerEvents: (this.state.isAddValid ? "initial" : "none"),
-          //     color: (this.state.isAddValid ? "black" : "gray")
-          // }}
-          onClick={this.props.cancelButtonCallBack}
-        >
+        <button type="cancel" onClick={this.props.cancelButtonCallBack}>
           Cancel
         </button>
       </div>

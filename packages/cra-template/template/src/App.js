@@ -24,17 +24,17 @@ export class App extends React.Component {
   }
 
   handleEdit = person => {
-    console.log('in handle edit and person is ' + person);
+    // console.log('in handle edit and person is ' + person);
     this.setState({ personBeingEdited: person });
   };
 
   handleCancel = () => {
-    console.log('cancel is handled');
+    // console.log('cancel is handled');
     this.setState({ personBeingEdited: null });
   };
 
   refreshData = () => {
-    console.log('refreshData called');
+    // console.log('refreshData called');
     axios
       .get(`https://limitless-springs-00633.herokuapp.com/books`)
       .then(res => {
@@ -58,20 +58,9 @@ export class App extends React.Component {
             publisher={this.state.personBeingEdited.publisher}
             cancelButtonCallBack={() => this.handleCancel()}
             refreshData={() => this.refreshData()}
-            // author={"testauthor"}
-            // title={"testtitle"}
-            // numberPages={3}
-            // publisher={"testPublisher"}
-
-            // title: this.props.title ?? null,
-            // author: this.props.author ?? null,
-            // numberPages: this.props.numberPages ?? null,
-            // publisher: this.props.publisher ?? null,
           />
         ) : null}
-        <table
-        // style={{ width: '50%' }}
-        >
+        <table>
           <tbody>
             <tr key="thing1">
               <th>title</th>
@@ -93,7 +82,7 @@ export class App extends React.Component {
                   }}
                 >
                   <button type="button" onClick={() => this.handleEdit(person)}>
-                    asdf
+                    Edit
                   </button>
                 </td>
               </tr>
