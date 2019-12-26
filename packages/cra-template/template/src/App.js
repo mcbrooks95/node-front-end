@@ -11,7 +11,7 @@ var url = 'https://limitless-springs-00633.herokuapp.com/books';
 export class App extends React.Component {
   state = {
     persons: [],
-    personBeingEdited: null
+    personBeingEdited: null,
   };
 
   componentDidMount() {
@@ -23,21 +23,27 @@ export class App extends React.Component {
       });
   }
 
-  handleEdit = (person) => {
-    console.log('in handle edit and person is ' + person)
+  handleEdit = person => {
+    console.log('in handle edit and person is ' + person);
     this.setState({ personBeingEdited: person });
-  }
+  };
+
+  handleCancel = () => {
+    console.log('cancel is handled');
+    this.setState({ personBeingEdited: null });
+  };
 
   render() {
     return (
       <div>
-        { this.state.personBeingEdited ?
-        <EditBook
+        {this.state.personBeingEdited ? (
+          <EditBook
             id={this.state.personBeingEdited._id}
             author={this.state.personBeingEdited.author}
             title={this.state.personBeingEdited.title}
             numberPages={this.state.personBeingEdited.numberPages}
             publisher={this.state.personBeingEdited.publisher}
+            cancelButtonCallBack={() => this.handleCancel()}
 
             // author={"testauthor"}
             // title={"testtitle"}
@@ -48,10 +54,9 @@ export class App extends React.Component {
             // author: this.props.author ?? null,
             // numberPages: this.props.numberPages ?? null,
             // publisher: this.props.publisher ?? null,
-        />
-        : null
-        }
-        <table 
+          />
+        ) : null}
+        <table
         // style={{ width: '50%' }}
         >
           <tr>
@@ -67,7 +72,15 @@ export class App extends React.Component {
               <td>{person.author}</td>
               <td>{person.numberPages}</td>
               <td>{person.publisher}</td>
-              <td><button type='button' onClick={() => this.handleEdit(person)}>asdf</button></td>
+              <td
+                style={{
+                  display: this.state.personBeingEdited ? 'none' : 'initial',
+                }}
+              >
+                <button type="button" onClick={() => this.handleEdit(person)}>
+                  asdf
+                </button>
+              </td>
             </tr>
           ))}
         </table>
