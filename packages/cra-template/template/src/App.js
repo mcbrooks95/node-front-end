@@ -49,7 +49,7 @@ export class App extends React.Component {
   render() {
     return (
       <div>
-        {this.state.personBeingEdited ? (
+        {/* {this.state.personBeingEdited ? (
           <EditBook
             id={this.state.personBeingEdited._id}
             author={this.state.personBeingEdited.author}
@@ -59,7 +59,7 @@ export class App extends React.Component {
             cancelButtonCallBack={() => this.handleCancel()}
             refreshData={() => this.refreshData()}
           />
-        ) : null}
+        ) : null} */}
         <table>
           <tbody>
             <tr key="thing1">
@@ -69,24 +69,42 @@ export class App extends React.Component {
               <th>publisher</th>
               <th>Edit Button</th>
             </tr>
-            {this.state.persons.map(person => (
-              <tr key={person._id}>
-                <td key={'title'}>{person.title}</td>
-                <td key={'author'}>{person.author}</td>
-                <td key={'numberPages'}>{person.numberPages}</td>
-                <td key={'publisher'}>{person.publisher}</td>
-                <td
-                  key={'button'}
-                  style={{
-                    display: this.state.personBeingEdited ? 'none' : 'initial',
-                  }}
-                >
-                  <button type="button" onClick={() => this.handleEdit(person)}>
-                    Edit
-                  </button>
-                </td>
-              </tr>
-            ))}
+            {this.state.persons.map(person =>
+              this.state.personBeingEdited &&
+              person._id === this.state.personBeingEdited._id ? (
+                <EditBook
+                  id={this.state.personBeingEdited._id}
+                  author={this.state.personBeingEdited.author}
+                  title={this.state.personBeingEdited.title}
+                  numberPages={this.state.personBeingEdited.numberPages}
+                  publisher={this.state.personBeingEdited.publisher}
+                  cancelButtonCallBack={() => this.handleCancel()}
+                  refreshData={() => this.refreshData()}
+                />
+              ) : (
+                <tr key={person._id}>
+                  <td key={'title'}>{person.title}</td>
+                  <td key={'author'}>{person.author}</td>
+                  <td key={'numberPages'}>{person.numberPages}</td>
+                  <td key={'publisher'}>{person.publisher}</td>
+                  <td
+                    key={'button'}
+                    style={{
+                      display: this.state.personBeingEdited
+                        ? 'none'
+                        : 'initial',
+                    }}
+                  >
+                    <button
+                      type="button"
+                      onClick={() => this.handleEdit(person)}
+                    >
+                      Edit
+                    </button>
+                  </td>
+                </tr>
+              )
+            )}
           </tbody>
         </table>
       </div>

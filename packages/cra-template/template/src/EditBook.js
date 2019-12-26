@@ -152,7 +152,7 @@ export class EditBook extends React.Component {
 
     axios
       .put(
-        'https://limitless-springs-00633.herokuapp.com/book/5dec1fa2655c3e3accfe4803',
+        'https://limitless-springs-00633.herokuapp.com/book/' + this.props.id,
         user
       )
       .catch(error => {
@@ -204,10 +204,13 @@ export class EditBook extends React.Component {
           >
             Add
           </button>
+          <button type="cancel" onClick={this.props.cancelButtonCallBack}>
+            Cancel
+          </button>
         </form>
-        <button type="cancel" onClick={this.props.cancelButtonCallBack}>
+        {/* <button type="cancel" onClick={this.props.cancelButtonCallBack}>
           Cancel
-        </button>
+        </button> */}
       </div>
     );
   }
