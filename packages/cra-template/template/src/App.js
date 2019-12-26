@@ -3,6 +3,7 @@ import axios from 'axios';
 // import logo from './logo.svg';
 import './App.css';
 import EditBook from './EditBook';
+import Post from './Post';
 
 // var url = 'https://limitless-springs-00633.herokuapp.com/books';
 
@@ -107,6 +108,7 @@ export class App extends React.Component {
             )}
           </tbody>
         </table>
+        <Post />
       </div>
     );
   }
