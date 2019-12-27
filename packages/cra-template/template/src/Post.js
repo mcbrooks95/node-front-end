@@ -1,6 +1,8 @@
 import React from 'react';
 // import axios from 'axios';
 import './App.css';
+import { faHome, faArrowUp } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export class Post extends React.Component {
   state = {
@@ -19,8 +21,9 @@ export class Post extends React.Component {
       <div class="row post">
         <div class="col-xl-2">
           {this.state.upvoteAmount}
-          <i class="fa fa-arrow-down fa-3x"></i>
-          <i class="fa fa-arrow-up fa-3x"></i>
+          {/* <i class="fa fa-arrow-down fa-3x"></i> */}
+          {/* <i class="fa fa-arrow-up fa-3x"></i> */}
+          <a href="#" style={{color: "black"}}><FontAwesomeIcon icon={faArrowUp} /></a>
         </div>
         <div class="col-xl-6">
           <div>
