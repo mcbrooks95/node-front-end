@@ -17,7 +17,11 @@ export class Post extends React.Component {
   render() {
     return (
       <div class="row post">
-        <div class="col-xl-2">{this.state.upvoteAmount}</div>
+        <div class="col-xl-2">
+          {this.state.upvoteAmount}
+          <i class="fa fa-arrow-down fa-3x"></i>
+          <i class="fa fa-arrow-up fa-3x"></i>
+        </div>
         <div class="col-xl-6">
           <div>
             <a href="https://www.google.com/" style={{ fontSize: '22px' }}>
