@@ -16,16 +16,7 @@ export class Post extends React.Component {
 
   render() {
     return (
-      <div
-        class="row"
-        style={{
-          width: '50%',
-          backgroundColor: '#FFFFFF',
-          borderRadius: '4px',
-          border: '1px solid gray',
-          paddingLeft: '10px',
-        }}
-      >
+      <div class="row post">
         <div class="col-xl-2">{this.state.upvoteAmount}</div>
         <div class="col-xl-6">
           <div>
