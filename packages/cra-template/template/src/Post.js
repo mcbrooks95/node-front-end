@@ -16,14 +16,28 @@ export class Post extends React.Component {
 
   render() {
     return (
-      <div class="row">
-        <div class="col-md-3">{this.state.upvoteAmount}</div>
-          <div class="col-md-3">
-            <div>
-              <a href="https://www.google.com/" style={{fontSize: "22px"}}>{this.state.title}</a>
-            </div>{' '}
+      <div
+        class="row"
+        style={{
+          width: '50%',
+          backgroundColor: '#FFFFFF',
+          borderRadius: '4px',
+          border: '1px solid gray',
+          paddingLeft: '10px',
+        }}
+      >
+        <div class="col-xl-2">{this.state.upvoteAmount}</div>
+        <div class="col-xl-6">
+          <div>
+            <a href="https://www.google.com/" style={{ fontSize: '22px' }}>
+              {this.state.title}
+            </a>
+          </div>{' '}
+          <div>
             by {this.state.contactPosterUserName} on {this.state.datePosted}
           </div>
+          <div>r/{this.state.category}</div>
+        </div>
       </div>
     );
   }

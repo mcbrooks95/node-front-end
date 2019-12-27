@@ -49,7 +49,7 @@ export class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <div style={{ backgroundColor: '#DAE0E6' }}>
         {/* {this.state.personBeingEdited ? (
           <EditBook
             id={this.state.personBeingEdited._id}
