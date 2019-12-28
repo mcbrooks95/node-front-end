@@ -15,7 +15,6 @@ export class Post extends React.Component {
     category: this.props.category,
     datePosted: this.props.datePosted,
     contentPosterId: this.props.contentPosterId,
-    // upvoteAmount: this.props.upvoteAmount,
     comments: this.props.comments,
     contactPosterUserName: this.props.contactPosterUserName,
     postId: this.props.postId,
@@ -28,11 +27,6 @@ export class Post extends React.Component {
   };
 
   downvote = () => {
-    // console.log('refreshData called');
-
-    // var postId = `5e06c39ecb42dd26fc548715`
-    // var userId = `5e066b482ff4171d3cd2c5de`
-
     var postId = this.state.postId;
     var userId = this.state.loggedInUserId;
     axios
@@ -74,7 +68,6 @@ export class Post extends React.Component {
           <div class="col-xl-2">
             <a
               href="#"
-              // style={{ color: 'black' }}
               className="upvotebutton"
               data-is-upvotes={
                 this.state.upvotes.includes(this.state.loggedInUserId)
@@ -103,7 +96,6 @@ export class Post extends React.Component {
 
             <a
               href="#"
-              // style={{ color: 'black' }}
               className="downvotebutton"
               data-is-downvotes={
                 this.state.downvotes.includes(this.state.loggedInUserId)
