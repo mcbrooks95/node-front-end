@@ -9,14 +9,14 @@ import Post from './Post';
 
 // source code = https://www.youtube.com/watch?v=oQnojIyTXb8
 
-var loggedInUser = { id: "5e06c50bcb42dd26fc548717", userName: "fdasdf3333"}
+var loggedInUser = { id: '5e06c50bcb42dd26fc548717', userName: 'fdasdf3333' };
 
 export class App extends React.Component {
   state = {
     persons: [],
     personBeingEdited: null,
     posts: [],
-    loggedInUser: loggedInUser
+    loggedInUser: loggedInUser,
   };
 
   componentDidMount() {
@@ -28,12 +28,12 @@ export class App extends React.Component {
       })
       .then(() => {
         axios
-        .get(`https://limitless-springs-00633.herokuapp.com/posts`)
-        .then(res => {
-          const posts = res.data;
-          this.setState({ posts });
-        })
-      })
+          .get(`https://limitless-springs-00633.herokuapp.com/posts`)
+          .then(res => {
+            const posts = res.data;
+            this.setState({ posts });
+          });
+      });
   }
 
   handleEdit = person => {
@@ -60,8 +60,8 @@ export class App extends React.Component {
   };
 
   render() {
-    console.log("about to print this.state.posts")
-    console.log(this.state.posts)
+    console.log('about to print this.state.posts');
+    console.log(this.state.posts);
     return (
       <div style={{ backgroundColor: '#DAE0E6' }}>
         <table>
@@ -112,32 +112,25 @@ export class App extends React.Component {
           </tbody>
         </table>
 
-
-
-
         <h4>Welcome to the site {this.state.loggedInUser.userName}</h4>
+        <h4>{this.state.loggedInUser.id}</h4>
 
-        {this.state.posts.map(post =>
-            (
-                <Post
-                  title={post.title}
-                  category={post.category}
-                  datePosted={post.datePosted}
-                  contentPosterId={post.contactPosterId}
-                  upvoteAmount={post.upvotes.length - post.downvotes.length}
-                  comments={[]}
-                  contactPosterUserName={post.contactPosterUserName}
-                  postId={post._id}
-
-                  upvotes={post.upvotes}
-                  downvotes={post.downvotes}
-
-                  loggedInUserName={this.state.loggedInUser.userName}
-                  loggedInUserId={this.state.loggedInUser.id}
-
-                />
-              ) 
-            )}
+        {this.state.posts.map(post => (
+          <Post
+            title={post.title}
+            category={post.category}
+            datePosted={post.datePosted}
+            contentPosterId={post.contactPosterId}
+            upvoteAmount={post.upvotes.length - post.downvotes.length}
+            comments={[]}
+            contactPosterUserName={post.contactPosterUserName}
+            postId={post._id}
+            upvotes={post.upvotes}
+            downvotes={post.downvotes}
+            loggedInUserName={this.state.loggedInUser.userName}
+            loggedInUserId={this.state.loggedInUser.id}
+          />
+        ))}
       </div>
     );
   }

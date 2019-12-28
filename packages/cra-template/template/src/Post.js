@@ -1,8 +1,13 @@
 import React from 'react';
 // import axios from 'axios';
 import './App.css';
-import { faHome, faArrowUp, faArrowDown } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faHome,
+  faArrowUp,
+  faArrowDown,
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import axios from 'axios';
 
 export class Post extends React.Component {
   state = {
@@ -10,38 +15,66 @@ export class Post extends React.Component {
     category: this.props.category,
     datePosted: this.props.datePosted,
     contentPosterId: this.props.contentPosterId,
-    upvoteAmount: this.props.upvoteAmount,
+    // upvoteAmount: this.props.upvoteAmount,
     comments: this.props.comments,
     contactPosterUserName: this.props.contactPosterUserName,
     postId: this.props.postId,
 
-
     upvotes: this.props.upvotes,
     downvotes: this.props.downvotes,
 
-
     loggedInUserName: this.props.loggedInUserName,
     loggedInUserId: this.props.loggedInUserId,
+  };
 
+  downvote = () => {
+    // console.log('refreshData called');
 
+    // var postId = `5e06c39ecb42dd26fc548715`
+    // var userId = `5e066b482ff4171d3cd2c5de`
+
+    var postId = this.state.postId;
+    var userId = this.state.loggedInUserId;
+    axios
+      .put(
+        'https://limitless-springs-00633.herokuapp.com/post/' +
+          postId +
+          '/downvote/' +
+          userId
+      )
+      .then(res => {
+        console.log('res = ');
+        console.log(res);
+        console.log('res.data.upvotes = ');
+        console.log(res.data.upvotes);
+        console.log('res.data.downvotes = ');
+        console.log(res.data.downvotes);
+        const upvotes = res.data.upvotes;
+        const downvotes = res.data.downvotes;
+        this.setState({ downvotes: downvotes });
+        this.setState({ upvotes: upvotes });
+      });
   };
 
   render() {
     return (
-      <div style={{paddingLeft: "30%"}}>
+      <div style={{ paddingLeft: '30%' }}>
         <div class="row post">
           <div class="col-xl-2">
-            
-            
-            <a href="#" style={{color: "black"}}><FontAwesomeIcon icon={faArrowUp} /></a>
-            
-            
-            <div className="upvoteAmount">{this.state.upvoteAmount}</div>
-            
-            
-            <a href="#" style={{color: "black"}}><FontAwesomeIcon icon={faArrowDown} /></a>
-          
-          
+            <a href="#" style={{ color: 'black' }}>
+              <FontAwesomeIcon icon={faArrowUp} />
+            </a>
+
+            <div className="upvoteAmount">
+              {this.state.upvotes.length - this.state.downvotes.length}
+            </div>
+
+            <a href="#" style={{ color: 'black' }}>
+              <FontAwesomeIcon
+                icon={faArrowDown}
+                onClick={() => this.downvote()}
+              />
+            </a>
           </div>
           <div class="col-xl-6">
             <div>
