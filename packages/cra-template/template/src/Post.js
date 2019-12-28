@@ -13,7 +13,17 @@ export class Post extends React.Component {
     upvoteAmount: this.props.upvoteAmount,
     comments: this.props.comments,
     contactPosterUserName: this.props.contactPosterUserName,
-    postId: this.props.postId
+    postId: this.props.postId,
+
+
+    upvotes: this.props.upvotes,
+    downvotes: this.props.downvotes,
+
+
+    loggedInUserName: this.props.loggedInUserName,
+    loggedInUserId: this.props.loggedInUserId,
+
+
   };
 
   render() {
@@ -21,9 +31,17 @@ export class Post extends React.Component {
       <div style={{paddingLeft: "30%"}}>
         <div class="row post">
           <div class="col-xl-2">
+            
+            
             <a href="#" style={{color: "black"}}><FontAwesomeIcon icon={faArrowUp} /></a>
+            
+            
             <div className="upvoteAmount">{this.state.upvoteAmount}</div>
+            
+            
             <a href="#" style={{color: "black"}}><FontAwesomeIcon icon={faArrowDown} /></a>
+          
+          
           </div>
           <div class="col-xl-6">
             <div>

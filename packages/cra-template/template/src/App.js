@@ -9,11 +9,14 @@ import Post from './Post';
 
 // source code = https://www.youtube.com/watch?v=oQnojIyTXb8
 
+var loggedInUser = { id: "5e06c50bcb42dd26fc548717", userName: "fdasdf3333"}
+
 export class App extends React.Component {
   state = {
     persons: [],
     personBeingEdited: null,
-    posts: []
+    posts: [],
+    loggedInUser: loggedInUser
   };
 
   componentDidMount() {
@@ -112,7 +115,7 @@ export class App extends React.Component {
 
 
 
-
+        <h4>Welcome to the site {this.state.loggedInUser.userName}</h4>
 
         {this.state.posts.map(post =>
             (
@@ -125,12 +128,16 @@ export class App extends React.Component {
                   comments={[]}
                   contactPosterUserName={post.contactPosterUserName}
                   postId={post._id}
+
+                  upvotes={post.upvotes}
+                  downvotes={post.downvotes}
+
+                  loggedInUserName={this.state.loggedInUser.userName}
+                  loggedInUserId={this.state.loggedInUser.id}
+
                 />
               ) 
             )}
-        {/* <Post />
-        <Post />
-        <Post /> */}
       </div>
     );
   }
