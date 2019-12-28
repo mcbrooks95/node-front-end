@@ -49,6 +49,23 @@ export class Post extends React.Component {
         this.setState({ upvotes: upvotes });
       });
   };
+  upvote = () => {
+    var postId = this.state.postId;
+    var userId = this.state.loggedInUserId;
+    axios
+      .put(
+        'https://limitless-springs-00633.herokuapp.com/post/' +
+          postId +
+          '/upvote/' +
+          userId
+      )
+      .then(res => {
+        const upvotes = res.data.upvotes;
+        const downvotes = res.data.downvotes;
+        this.setState({ downvotes: downvotes });
+        this.setState({ upvotes: upvotes });
+      });
+  };
 
   render() {
     return (
@@ -65,7 +82,7 @@ export class Post extends React.Component {
                   : '0'
               }
             >
-              <FontAwesomeIcon icon={faArrowUp} />
+              <FontAwesomeIcon icon={faArrowUp} onClick={() => this.upvote()} />
             </a>
 
             <div
