@@ -43,12 +43,6 @@ export class Post extends React.Component {
           userId
       )
       .then(res => {
-        console.log('res = ');
-        console.log(res);
-        console.log('res.data.upvotes = ');
-        console.log(res.data.upvotes);
-        console.log('res.data.downvotes = ');
-        console.log(res.data.downvotes);
         const upvotes = res.data.upvotes;
         const downvotes = res.data.downvotes;
         this.setState({ downvotes: downvotes });
@@ -61,15 +55,45 @@ export class Post extends React.Component {
       <div style={{ paddingLeft: '30%' }}>
         <div class="row post">
           <div class="col-xl-2">
-            <a href="#" style={{ color: 'black' }}>
+            <a
+              href="#"
+              // style={{ color: 'black' }}
+              className="upvotebutton"
+              data-is-upvotes={
+                this.state.upvotes.includes(this.state.loggedInUserId)
+                  ? '1'
+                  : '0'
+              }
+            >
               <FontAwesomeIcon icon={faArrowUp} />
             </a>
 
-            <div className="upvoteAmount">
+            <div
+              className="upvoteAmount"
+              data-is-upvotes={
+                this.state.upvotes.includes(this.state.loggedInUserId)
+                  ? '1'
+                  : '0'
+              }
+              data-is-downvotes={
+                this.state.downvotes.includes(this.state.loggedInUserId)
+                  ? '1'
+                  : '0'
+              }
+            >
               {this.state.upvotes.length - this.state.downvotes.length}
             </div>
 
-            <a href="#" style={{ color: 'black' }}>
+            <a
+              href="#"
+              // style={{ color: 'black' }}
+              className="downvotebutton"
+              data-is-downvotes={
+                this.state.downvotes.includes(this.state.loggedInUserId)
+                  ? '1'
+                  : '0'
+              }
+            >
               <FontAwesomeIcon
                 icon={faArrowDown}
                 onClick={() => this.downvote()}

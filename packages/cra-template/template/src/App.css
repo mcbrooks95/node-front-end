@@ -21,11 +21,31 @@
   padding-left: 10px;
 }
 
-[data-icon="arrow-up"]:hover {
+[data-icon='arrow-up']:hover {
   color: red;
 }
 
-[data-icon="arrow-down"]:hover {
+[data-is-upvotes='1'][data-is-downvotes='0'] {
+  color: red;
+}
+[data-is-upvotes='0'][data-is-downvotes='1'] {
+  color: lightblue;
+}
+
+[data-is-upvotes='1'].upvotebutton {
+  color: red;
+}
+[data-is-upvotes='0'].upvotebutton {
+  color: black;
+}
+[data-is-downvotes='1'].downvotebutton {
+  color: lightblue;
+}
+[data-is-downvotes='0'].downvotebutton {
+  color: black;
+}
+
+[data-icon='arrow-down']:hover {
   color: lightblue;
 }
 
