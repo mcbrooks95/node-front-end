@@ -6,36 +6,36 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export class Post extends React.Component {
   state = {
-    title: 'Test Title',
-    category: 'Interesting',
-    datePosted: '09-20-2019',
-    contentPosterId: 1,
-    upvoteAmount: 5,
-    comments: [],
-    contactPosterUserName: 'dude499',
-    postId: 12,
+    title: this.props.title,
+    category: this.props.category,
+    datePosted: this.props.datePosted,
+    contentPosterId: this.props.contentPosterId,
+    upvoteAmount: this.props.upvoteAmount,
+    comments: this.props.comments,
+    contactPosterUserName: this.props.contactPosterUserName,
+    postId: this.props.postId
   };
 
   render() {
     return (
-      <div class="row post">
-        <div class="col-xl-2">
-          <a href="#" style={{color: "black"}}><FontAwesomeIcon icon={faArrowUp} /></a>
-          <div className="upvoteAmount">{this.state.upvoteAmount}</div>
-          <a href="#" style={{color: "black"}}><FontAwesomeIcon icon={faArrowDown} /></a>
-          {/* <i class="fa fa-arrow-down fa-3x"></i> */}
-          {/* <i class="fa fa-arrow-up fa-3x"></i> */}
-        </div>
-        <div class="col-xl-6">
-          <div>
-            <a href="https://www.google.com/" style={{ fontSize: '22px' }}>
-              {this.state.title}
-            </a>
-          </div>{' '}
-          <div>
-            by {this.state.contactPosterUserName} on {this.state.datePosted}
+      <div style={{paddingLeft: "30%"}}>
+        <div class="row post">
+          <div class="col-xl-2">
+            <a href="#" style={{color: "black"}}><FontAwesomeIcon icon={faArrowUp} /></a>
+            <div className="upvoteAmount">{this.state.upvoteAmount}</div>
+            <a href="#" style={{color: "black"}}><FontAwesomeIcon icon={faArrowDown} /></a>
           </div>
-          <div>r/{this.state.category}</div>
+          <div class="col-xl-6">
+            <div>
+              <a href="https://www.google.com/" style={{ fontSize: '22px' }}>
+                {this.state.title}
+              </a>
+            </div>{' '}
+            <div>
+              by {this.state.contactPosterUserName} on {this.state.datePosted}
+            </div>
+            <div>r/{this.state.category}</div>
+          </div>
         </div>
       </div>
     );

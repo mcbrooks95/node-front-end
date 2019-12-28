@@ -13,6 +13,7 @@ export class App extends React.Component {
   state = {
     persons: [],
     personBeingEdited: null,
+    posts: []
   };
 
   componentDidMount() {
@@ -21,7 +22,15 @@ export class App extends React.Component {
       .then(res => {
         const persons = res.data;
         this.setState({ persons });
-      });
+      })
+      .then(() => {
+        axios
+        .get(`https://limitless-springs-00633.herokuapp.com/posts`)
+        .then(res => {
+          const posts = res.data;
+          this.setState({ posts });
+        })
+      })
   }
 
   handleEdit = person => {
@@ -48,19 +57,10 @@ export class App extends React.Component {
   };
 
   render() {
+    console.log("about to print this.state.posts")
+    console.log(this.state.posts)
     return (
       <div style={{ backgroundColor: '#DAE0E6' }}>
-        {/* {this.state.personBeingEdited ? (
-          <EditBook
-            id={this.state.personBeingEdited._id}
-            author={this.state.personBeingEdited.author}
-            title={this.state.personBeingEdited.title}
-            numberPages={this.state.personBeingEdited.numberPages}
-            publisher={this.state.personBeingEdited.publisher}
-            cancelButtonCallBack={() => this.handleCancel()}
-            refreshData={() => this.refreshData()}
-          />
-        ) : null} */}
         <table>
           <tbody>
             <tr key="thing1">
@@ -108,7 +108,29 @@ export class App extends React.Component {
             )}
           </tbody>
         </table>
+
+
+
+
+
+
+        {this.state.posts.map(post =>
+            (
+                <Post
+                  title={post.title}
+                  category={post.category}
+                  datePosted={post.datePosted}
+                  contentPosterId={post.contactPosterId}
+                  upvoteAmount={post.upvotes.length - post.downvotes.length}
+                  comments={[]}
+                  contactPosterUserName={post.contactPosterUserName}
+                  postId={post._id}
+                />
+              ) 
+            )}
+        {/* <Post />
         <Post />
+        <Post /> */}
       </div>
     );
   }
