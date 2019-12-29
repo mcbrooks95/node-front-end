@@ -11,6 +11,20 @@ import axios from 'axios';
 
 export class Post extends React.Component {
   state = {
+    // title: this.props.post.title,
+    // category: this.props.post.category,
+    // datePosted: this.props.post.datePosted,
+    // contentPosterId: this.props.post.contentPosterId,
+    // comments: this.props.post.comments,
+    // contactPosterUserName: this.props.post.contactPosterUserName,
+    // postId: this.props.post.postId,
+
+    // upvotes: this.props.upvotes,
+    // downvotes: this.props.downvotes,
+
+    // loggedInUserName: this.props.loggedInUserName,
+    // loggedInUserId: this.props.loggedInUserId,
+
     title: this.props.title,
     category: this.props.category,
     datePosted: this.props.datePosted,

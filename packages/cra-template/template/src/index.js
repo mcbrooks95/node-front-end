@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import Post from './Post';
+import PostContainer from './PostContainer';
 import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -23,20 +24,21 @@ ReactDOM.render(
           exact
           path="/post/:id/:userId"
           render={props => (
-            <Post
-              title={'post.title'}
-              category={'post.category'}
-              datePosted={Date.now()}
-              contentPosterId={'post.contactPosterId'}
-              // upvoteAmount={3}
-              comments={[]}
-              contactPosterUserName={'post.contactPosterUserName'}
-              postId={'asdf'}
-              upvotes={[]}
-              downvotes={[]}
-              loggedInUserName={'this.state.loggedInUser.userName'}
-              loggedInUserId={'this.state.loggedInUser.id'}
-            />
+            <PostContainer {...props} />
+            // <Post
+            //   title={'post.title'}
+            //   category={'post.category'}
+            //   datePosted={Date.now()}
+            //   contentPosterId={'post.contactPosterId'}
+            //   // upvoteAmount={3}
+            //   comments={[]}
+            //   contactPosterUserName={'post.contactPosterUserName'}
+            //   postId={'asdf'}
+            //   upvotes={[]}
+            //   downvotes={[]}
+            //   loggedInUserName={'this.state.loggedInUser.userName'}
+            //   loggedInUserId={'this.state.loggedInUser.id'}
+            // />
           )}
         ></Route>
       </Switch>

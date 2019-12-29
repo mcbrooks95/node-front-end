@@ -8,6 +8,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
+import Post from './Post';
 
 export class PostContainer extends React.Component {
   state = {
@@ -17,10 +18,13 @@ export class PostContainer extends React.Component {
 
   componentDidMount() {
     console.log('this.props.match.params');
+    console.log(this.props);
+    console.log(this.props.match);
     console.log(this.props.match.params);
+    console.log(this.props.match.params.userId);
     axios
       .get(
-        `https://limitless-springs-00633.herokuapp.com/user/` +
+        'https://limitless-springs-00633.herokuapp.com/user/' +
           this.props.match.params.userId
       )
       .then(res => {
@@ -30,8 +34,8 @@ export class PostContainer extends React.Component {
       .then(() => {
         axios
           .get(
-            `https://limitless-springs-00633.herokuapp.com/post/` +
-              this.props.match.params.postId
+            'https://limitless-springs-00633.herokuapp.com/post/' +
+              this.props.match.params.id
           )
           .then(res => {
             const post = res.data;
@@ -41,7 +45,7 @@ export class PostContainer extends React.Component {
   }
 
   render() {
-    return (
+    return this.state.post ? (
       <Post
         title={this.state.post.title}
         category={this.state.post.category}
@@ -55,7 +59,7 @@ export class PostContainer extends React.Component {
         loggedInUserName={this.state.post.loggedInUserName}
         loggedInUserId={this.state.post.loggedInUserId}
       />
-    );
+    ) : null;
   }
 }
 
