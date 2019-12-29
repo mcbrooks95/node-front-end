@@ -16,8 +16,9 @@ ReactDOM.render(
   <BrowserRouter>
     <div className="App">
       <Switch>
-        <Route exact path="/" component={App}></Route>
         <Route exact path="/:userId" component={App}></Route>
+        <Route exact path="/" component={App}></Route>
+        {/* <Route exact path="/:userId" component={App}></Route> */}
         <Route
           exact
           path="/post/:id/:userId"
