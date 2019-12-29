@@ -56,8 +56,8 @@ export class PostContainer extends React.Component {
         postId={this.state.post._id}
         upvotes={this.state.post.upvotes}
         downvotes={this.state.post.downvotes}
-        loggedInUserName={this.state.post.loggedInUserName}
-        loggedInUserId={this.state.post.loggedInUserId}
+        loggedInUserName={this.state.loggedInUser.userName}
+        loggedInUserId={this.state.loggedInUser._id}
       />
     ) : null;
   }
