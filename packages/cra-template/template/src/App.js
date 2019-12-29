@@ -4,6 +4,7 @@ import axios from 'axios';
 import './App.css';
 import EditBook from './EditBook';
 import Post from './Post';
+import Routes from './routes';
 
 // var url = 'https://limitless-springs-00633.herokuapp.com/books';
 
@@ -64,6 +65,7 @@ export class App extends React.Component {
     console.log(this.state.posts);
     return (
       <div style={{ backgroundColor: '#DAE0E6' }}>
+        {/* <Routes /> */}
         <table>
           <tbody>
             <tr key="thing1">
