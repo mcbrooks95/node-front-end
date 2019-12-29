@@ -15,8 +15,8 @@ import Post from './Post';
  * Don't forget to import the components above after adding new route.
  */
 export default (
-    <Switch>
-        <Route exact path='/' component={App}></Route>
-        <Route exact path='/post' component={Post}></Route>
-    </Switch>
+  <Switch>
+    <Route exact path="/:userId" component={App}></Route>
+    <Route exact path="/post/:id/:userId" component={Post}></Route>
+  </Switch>
 );

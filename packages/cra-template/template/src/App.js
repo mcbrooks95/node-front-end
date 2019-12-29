@@ -63,6 +63,8 @@ export class App extends React.Component {
   render() {
     console.log('about to print this.state.posts');
     console.log(this.state.posts);
+    console.log('about to print this.props.match.params');
+    console.log(this.props.match.params);
     return (
       <div style={{ backgroundColor: '#DAE0E6' }}>
         {/* <Routes /> */}
