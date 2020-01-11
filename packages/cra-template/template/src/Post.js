@@ -125,10 +125,20 @@ export class Post extends React.Component {
           </div>
           <div class="col-xl-6">
             <div>
-              <a href="https://www.google.com/" style={{ fontSize: '22px' }}>
+              <a
+                href={
+                  '/post/' +
+                  this.state.postId +
+                  '/' +
+                  this.state.loggedInUserId +
+                  '/'
+                }
+                style={{ fontSize: '22px' }}
+              >
                 {this.state.title}
               </a>
             </div>{' '}
+            <div>postID = {this.state.postId}</div>{' '}
             <div>
               by {this.state.contactPosterUserName} on {this.state.datePosted}
             </div>
