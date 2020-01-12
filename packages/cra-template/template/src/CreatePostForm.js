@@ -17,10 +17,12 @@ export class CreatePostForm extends React.Component {
     this.state = {
       value: '',
       value2: '',
+      value3: '',
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleChange2 = this.handleChange2.bind(this);
+    this.handleChange3 = this.handleChange3.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -30,6 +32,10 @@ export class CreatePostForm extends React.Component {
   handleChange2(event) {
     console.log('in handleChange2 event');
     this.setState({ value2: event.target.value });
+  }
+  handleChange3(event) {
+    console.log('in handleChange3 event');
+    this.setState({ value3: event.target.value });
   }
 
   handleSubmit(event) {
@@ -53,6 +59,15 @@ export class CreatePostForm extends React.Component {
             onChange={this.handleChange2}
           />
         </label>
+        <select
+          id="lang"
+          onChange={this.handleChange3}
+          value={this.state.value3}
+        >
+          <option value="select">interesting</option>
+          <option value="Java">funny</option>
+          <option value="C++">sports</option>
+        </select>
         <input type="submit" value="Submit" />
       </form>
     );
