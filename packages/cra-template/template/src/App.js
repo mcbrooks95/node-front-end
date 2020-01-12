@@ -4,6 +4,7 @@ import axios from 'axios';
 import './App.css';
 import EditBook from './EditBook';
 import Post from './Post';
+import CreatePostForm from './CreatePostForm';
 import Routes from './routes';
 
 // var url = 'https://limitless-springs-00633.herokuapp.com/books';
@@ -118,6 +119,7 @@ export class App extends React.Component {
 
         <h4>Welcome to the site {this.state.loggedInUser.userName}</h4>
         <h4>{this.state.loggedInUser.id}</h4>
+        <CreatePostForm />
 
         {this.state.posts.map(post => (
           <Post
