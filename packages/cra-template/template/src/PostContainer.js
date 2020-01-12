@@ -9,11 +9,14 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 import Post from './Post';
+import HomeNav from './HomeNav';
+import CommentContainer from './CommentContainer';
 
 export class PostContainer extends React.Component {
   state = {
     post: null,
     loggedInUser: null,
+    comments: null,
   };
 
   componentDidMount() {
@@ -41,24 +44,67 @@ export class PostContainer extends React.Component {
             const post = res.data;
             this.setState({ post: post });
           });
+      })
+      .then(() => {
+        axios
+          .get(
+            'https://limitless-springs-00633.herokuapp.com/post/' +
+              this.props.match.params.id +
+              '/comments'
+          )
+          .then(res => {
+            console.log('about to print res.data');
+            console.log(res.data);
+            const comments = res.data;
+            this.setState({ comments: comments });
+          });
       });
   }
 
   render() {
     return this.state.post ? (
-      <Post
-        title={this.state.post.title}
-        category={this.state.post.category}
-        datePosted={this.state.post.datePosted}
-        contentPosterId={this.state.post.contactPosterId}
-        comments={[]}
-        contactPosterUserName={this.state.post.contactPosterId}
-        postId={this.state.post._id}
-        upvotes={this.state.post.upvotes}
-        downvotes={this.state.post.downvotes}
-        loggedInUserName={this.state.loggedInUser.userName}
-        loggedInUserId={this.state.loggedInUser._id}
-      />
+      <div>
+        <HomeNav loggedInUserId={this.state.loggedInUser._id} />
+        <Post
+          title={this.state.post.title}
+          category={this.state.post.category}
+          datePosted={this.state.post.datePosted}
+          contentPosterId={this.state.post.contactPosterId}
+          comments={[]}
+          contactPosterUserName={this.state.post.contactPosterId}
+          postId={this.state.post._id}
+          upvotes={this.state.post.upvotes}
+          downvotes={this.state.post.downvotes}
+          loggedInUserName={this.state.loggedInUser.userName}
+          loggedInUserId={this.state.loggedInUser._id}
+        />
+        {/* {
+          this.state.comments ?
+          this.state.comments.forEach(comment => 
+           { return  (
+            <CommentContainer 
+              content={comment.content}
+            />
+            )
+           }
+          )
+          :
+          null
+        } */}
+        {this.state.comments
+          ? this.state.comments.map((comment, i) => {
+              return (
+                <CommentContainer
+                  content={comment.content}
+                  commentNumber={i + 1}
+                />
+              );
+            })
+          : null}
+        {/* <CommentContainer
+          content={this.state.comments}
+        /> */}
+      </div>
     ) : null;
   }
 }
