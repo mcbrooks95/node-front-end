@@ -39,7 +39,7 @@ export class CreatePostForm extends React.Component {
   }
 
   handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.value);
+    // alert('A name was submitted: ' + this.state.value);
 
     axios
       .post('https://limitless-springs-00633.herokuapp.com/post', {
@@ -60,6 +60,7 @@ export class CreatePostForm extends React.Component {
       });
 
     event.preventDefault();
+    window.location.reload(false);
   }
 
   render() {
