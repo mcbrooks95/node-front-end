@@ -17,7 +17,7 @@ export class CreatePostForm extends React.Component {
     this.state = {
       value: '',
       value2: '',
-      value3: '',
+      value3: 'interesting',
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -40,6 +40,25 @@ export class CreatePostForm extends React.Component {
 
   handleSubmit(event) {
     alert('A name was submitted: ' + this.state.value);
+
+    axios
+      .post('https://limitless-springs-00633.herokuapp.com/post', {
+        title: this.state.value,
+        category: this.state.value3,
+        content: this.state.value2,
+        datePosted: Date.now(),
+        contactPosterId: this.props.contactPosterId,
+        upvotes: [],
+        downvotes: [],
+        contactPosterUserName: this.props.contactPosterUserName,
+      })
+      .then(function(response) {
+        console.log(response);
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+
     event.preventDefault();
   }
 
@@ -47,12 +66,13 @@ export class CreatePostForm extends React.Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <label>
-          Name:
+          Title of Post:
           <input
             type="text"
             value={this.state.value}
             onChange={this.handleChange}
           />
+          Post Content:
           <input
             type="text"
             value={this.state.value2}
