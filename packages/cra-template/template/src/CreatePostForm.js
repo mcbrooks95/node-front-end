@@ -84,9 +84,9 @@ export class CreatePostForm extends React.Component {
           onChange={this.handleChange3}
           value={this.state.value3}
         >
-          <option value="select">interesting</option>
-          <option value="Java">funny</option>
-          <option value="C++">sports</option>
+          <option value="interesting">interesting</option>
+          <option value="funny">funny</option>
+          <option value="sports">sports</option>
         </select>
         <input type="submit" value="Submit" />
       </form>
