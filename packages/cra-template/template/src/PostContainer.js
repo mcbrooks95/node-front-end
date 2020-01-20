@@ -11,6 +11,7 @@ import axios from 'axios';
 import Post from './Post';
 import HomeNav from './HomeNav';
 import CommentContainer from './CommentContainer';
+import CommentCreator from './CommentCreator';
 
 export class PostContainer extends React.Component {
   state = {
@@ -77,6 +78,10 @@ export class PostContainer extends React.Component {
           downvotes={this.state.post.downvotes}
           loggedInUserName={this.state.loggedInUser.userName}
           loggedInUserId={this.state.loggedInUser._id}
+        />
+        <CommentCreator
+          postId={this.state.post._id}
+          contactPosterId={this.state.loggedInUser._id}
         />
         {this.state.comments
           ? this.state.comments.map((comment, i) => {
