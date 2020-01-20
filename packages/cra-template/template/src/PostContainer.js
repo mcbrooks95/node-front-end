@@ -78,19 +78,6 @@ export class PostContainer extends React.Component {
           loggedInUserName={this.state.loggedInUser.userName}
           loggedInUserId={this.state.loggedInUser._id}
         />
-        {/* {
-          this.state.comments ?
-          this.state.comments.forEach(comment => 
-           { return  (
-            <CommentContainer 
-              content={comment.content}
-            />
-            )
-           }
-          )
-          :
-          null
-        } */}
         {this.state.comments
           ? this.state.comments.map((comment, i) => {
               return (
@@ -101,9 +88,6 @@ export class PostContainer extends React.Component {
               );
             })
           : null}
-        {/* <CommentContainer
-          content={this.state.comments}
-        /> */}
       </div>
     ) : null;
   }
