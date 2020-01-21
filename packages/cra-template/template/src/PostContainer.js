@@ -88,6 +88,7 @@ export class PostContainer extends React.Component {
               return (
                 <CommentContainer
                   content={comment.content}
+                  commentId={comment._id}
                   commentNumber={i + 1}
                 />
               );

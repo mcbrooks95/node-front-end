@@ -45,12 +45,32 @@ export class CommentCreator extends React.Component {
       .then(function(response) {
         console.log(response);
       })
+      .then(function(response) {
+        //code came from:
+        //https://javascript.info/async-await
+        async function f() {
+          let promise = new Promise((resolve, reject) => {
+            setTimeout(() => window.location.reload(false), 500);
+          });
+
+          let result = await promise; // wait until the promise resolves (*)
+
+          alert(result); // "done!"
+        }
+
+        f();
+      })
+      // .then(function(response) {
+
+      //   event.preventDefault();
+      //   window.location.reload(false);
+      // })
       .catch(function(error) {
         console.log(error);
       });
 
     event.preventDefault();
-    window.location.reload(false);
+    // window.location.reload(false);
   }
 
   render() {
